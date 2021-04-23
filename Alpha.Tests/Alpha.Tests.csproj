@@ -21,11 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ModelValidators.Tests\" />
-    <Folder Include="APIs.Tests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Alpha.Web.API\Alpha.Web.API.csproj" />
   </ItemGroup>
 

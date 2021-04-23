@@ -8,6 +8,6 @@ namespace Alpha.Web.API.Domain.Services
     public interface IAuditLogsService
     {
         Task<ResponseModel<IEnumerable<AuditLogModel>>> GetByCriteriaAsync(string action, DateTime endDate,
-            DateTime startDate, string tableName, int tableId, int userId);
+            DateTime startDate, string tableName, int tableId);
     }
 }

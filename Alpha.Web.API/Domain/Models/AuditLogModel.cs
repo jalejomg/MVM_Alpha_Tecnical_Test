@@ -12,7 +12,6 @@ namespace Alpha.Web.API.Domain.Models
         public int TableId { get; set; }
         public string Action { get; set; }
         public DateTime Date { get; set; }
-        public User User { get; set; }
 
         public static AuditLogModel MakeOne(AuditLog auditLogEntity)
         {
@@ -23,7 +22,6 @@ namespace Alpha.Web.API.Domain.Models
                 TableId = auditLogEntity.TableId,
                 Action = auditLogEntity.Action,
                 Date = auditLogEntity.Date,
-                User = auditLogEntity.User
             };
         }
 

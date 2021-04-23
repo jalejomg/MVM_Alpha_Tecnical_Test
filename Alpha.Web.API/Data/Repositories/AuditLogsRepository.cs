@@ -16,18 +16,17 @@ namespace Alpha.Web.API.Data.Repositories
             _context = context;
         }
         public async Task<IEnumerable<AuditLog>> GetByCriteriaAsync(string action, DateTime endDate, DateTime startDate,
-            string tableName, int tableId, int userId)
+            string tableName, int tableId)
         {
             var actionParameter = new SqlParameter("Action", action);
             var endDateParameter = new SqlParameter("EndDate", action);
             var startDateParameter = new SqlParameter("StartDate", action);
             var tableNameParameter = new SqlParameter("TableName", action);
             var tableIdParameter = new SqlParameter("TableId", action);
-            var userIdParameter = new SqlParameter("UserId", action);
 
             return await _context.AuditLogs.FromSqlRaw("EXEC [dbo].[Filters] @Action, @EndDate, @StartDate, @TableName," +
-                "@TableId, @UserId", actionParameter, endDateParameter, startDateParameter, tableNameParameter,
-                tableIdParameter, userIdParameter).ToListAsync();
+                "@TableId", actionParameter, endDateParameter, startDateParameter, tableNameParameter,
+                tableIdParameter).ToListAsync();
         }
     }
 }

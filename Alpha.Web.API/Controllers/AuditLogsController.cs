@@ -19,9 +19,9 @@ namespace Alpha.Web.API.Controllers
         [HttpGet]
         [Route("api/auditLogs")]
         public async Task<IActionResult> GetAuditLogsByCriteria(string action, DateTime endDate,
-            DateTime startDate, string tableName, int tableId, int userId)
+            DateTime startDate, string tableName, int tableId)
         {
-            return Ok(await _auditLogService.GetByCriteriaAsync(action, endDate, startDate, tableName, tableId, userId));
+            return Ok(await _auditLogService.GetByCriteriaAsync(action, endDate, startDate, tableName, tableId));
         }
     }
 }

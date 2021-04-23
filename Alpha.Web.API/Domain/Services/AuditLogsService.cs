@@ -16,10 +16,10 @@ namespace Alpha.Web.API.Domain.Services
             _auditLogRepository = auditLogRepository;
         }
         public async Task<ResponseModel<IEnumerable<AuditLogModel>>> GetByCriteriaAsync(string action, DateTime endDate,
-            DateTime startDate, string tableName, int tableId, int userId)
+            DateTime startDate, string tableName, int tableId)
         {
             var auditLogEntities = await _auditLogRepository.GetByCriteriaAsync(action, endDate,
-                startDate, tableName, tableId, userId);
+                startDate, tableName, tableId);
 
             return new ResponseModel<IEnumerable<AuditLogModel>>
             {

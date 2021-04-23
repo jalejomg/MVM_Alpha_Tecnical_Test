@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alpha.Web.API.Data.Entities
 {
@@ -21,8 +20,5 @@ namespace Alpha.Web.API.Data.Entities
 
         [Required]
         public DateTime Date { get; set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; set; }
     }
 }

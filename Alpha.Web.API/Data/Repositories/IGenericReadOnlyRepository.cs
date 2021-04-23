@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public interface IGenericReadOnlyRepository<Entity> where Entity : class
+    public interface IGenericReadOnlyRepository<in Id, Entity> where Entity : class
     {
         Task<IEnumerable<Entity>> GetAllAsync();
-        Task<Entity> GetByIdAsync(int id);
+        Task<Entity> GetByIdAsync(Id id);
     }
 }

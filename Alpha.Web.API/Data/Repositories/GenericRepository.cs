@@ -1,27 +1,16 @@
 ﻿using Alpha.Web.API.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class GenericRepository<Entity> : IGenericRepository<Entity> where Entity : class, IEntity
+    public class GenericRepository<Id, Entity> : GenericReadOnlyRepository<Id, Entity>,
+        IGenericRepository<Id, Entity> where Entity : class, IEntity<Id>
     {
         private readonly AlphaDbContext _context;
 
-        public GenericRepository(AlphaDbContext context)
+        public GenericRepository(AlphaDbContext context) : base(context)
         {
             _context = context;
-        }
-
-        public async Task<IEnumerable<Entity>> GetAllAsync()
-        {
-            return await _context.Set<Entity>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task<Entity> GetByIdAsync(int id)
-        {
-            return await _context.Set<Entity>().AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
         }
 
         public async Task<Entity> CreateAsync(Entity entity)

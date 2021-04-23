@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Controllers
-{
-    //[Route("api/[controller]")]
+{    
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -26,8 +25,8 @@ namespace Alpha.Web.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/users/{userId:int}")]
-        public async Task<IActionResult> GetById(int userId)
+        [Route("api/users/{userId}")]
+        public async Task<IActionResult> GetById(string userId)
         {
             try
             {
@@ -54,8 +53,8 @@ namespace Alpha.Web.API.Controllers
         }
 
         [HttpPut]
-        [Route("api/users/{userId:int}")]
-        public async Task<IActionResult> Update(int userId, UserModel user)
+        [Route("api/users/{userId}")]
+        public async Task<IActionResult> Update(string userId, UserModel user)
         {
             try
             {
@@ -68,8 +67,8 @@ namespace Alpha.Web.API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/users/{userId:int}")]
-        public async Task<IActionResult> Delete(int userId)
+        [Route("api/users/{userId}")]
+        public async Task<IActionResult> Delete(string userId)
         {
             try
             {

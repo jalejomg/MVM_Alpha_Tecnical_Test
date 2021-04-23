@@ -6,10 +6,10 @@ namespace Alpha.Web.API.Domain.Services
 {
     public interface IUsersService
     {
-        Task<UserModel> GetByIdAsync(int userId);
+        Task<UserModel> GetByIdAsync(string userId);
         Task<ResponseModel<IEnumerable<UserModel>>> ListAsync();
-        Task<int> CreateAsync(UserModel userModel);
-        Task<int> UpdateAsync(int userId, UserModel userModel);
-        Task DeleteAsync(int userId);
+        Task<string> CreateAsync(UserModel userModel);
+        Task<string> UpdateAsync(string userId, UserModel userModel);
+        Task DeleteAsync(string userId);
     }
 }

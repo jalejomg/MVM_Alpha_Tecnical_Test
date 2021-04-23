@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class GenericReadOnlyRepository<Entity> : IGenericReadOnlyRepository<Entity> where Entity : class, IEntity
+    public class GenericReadOnlyRepository<Id, Entity> : IGenericReadOnlyRepository<Id, Entity> where Entity : class, IEntity<Id>
     {
         private readonly AlphaDbContext _context;
 
@@ -18,9 +18,11 @@ namespace Alpha.Web.API.Data.Repositories
             return await _context.Set<Entity>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<Entity> GetByIdAsync(int id)
+        public async Task<Entity> GetByIdAsync(Id id)
         {
-            return await _context.Set<Entity>().AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
+            //return await _context.Set<Entity>().AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
+
+            return await _context.FindAsync<Entity>(id);
         }
     }
 }

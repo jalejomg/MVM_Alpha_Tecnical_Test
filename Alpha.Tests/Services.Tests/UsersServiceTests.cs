@@ -25,7 +25,7 @@ namespace Alpha.Tests.Services.Tests
         {
             _userEntity = new User
             {
-                Id = 123,
+                Id = "lsnfoisadfa",
                 Name = "Alpha",
                 LastName = "Communications",
                 Email = "alpha.communications@alpha.co",
@@ -34,7 +34,7 @@ namespace Alpha.Tests.Services.Tests
 
             _correctUserModel = new UserModel
             {
-                Id = 123,
+                Id = "lsnfoisadfa",
                 Name = "Alpha",
                 LastName = "Communications",
                 Email = "alpha.communications@alpha.co"
@@ -50,11 +50,11 @@ namespace Alpha.Tests.Services.Tests
         public async Task GetById_Return_UserModel_With_Fields_Fill()
         {
             //Arrange
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(_userEntity);
 
             //Act
-            var result = await _service.GetByIdAsync(It.IsAny<int>());
+            var result = await _service.GetByIdAsync(It.IsAny<string>());
 
             //Asserts
             Assert.NotNull(result);
@@ -68,13 +68,13 @@ namespace Alpha.Tests.Services.Tests
         public async Task GetById_Throw_NotFoundCustomException_Entity_Null()
         {
             //Arrange          
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync((User)null);
 
             //Act and Assert
             await Assert.ThrowsAsync<NotFoundCustomException>(async () =>
             {
-                await _service.GetByIdAsync(It.IsAny<int>());
+                await _service.GetByIdAsync(It.IsAny<string>());
             });
         }
 
@@ -84,13 +84,13 @@ namespace Alpha.Tests.Services.Tests
             //Arrange
             _userEntity.State = false;
 
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(_userEntity);
 
             //Act and Assert
             await Assert.ThrowsAsync<NotFoundCustomException>(async () =>
             {
-                await _service.GetByIdAsync(It.IsAny<int>());
+                await _service.GetByIdAsync(It.IsAny<string>());
             });
         }
 
@@ -154,7 +154,7 @@ namespace Alpha.Tests.Services.Tests
             //Arrange
             User updatedUserEntity = null;
 
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                .ReturnsAsync(_userEntity);
 
             _userRepositoryMock.Setup(repository => repository.UpdateAsync(It.IsAny<User>()))
@@ -164,7 +164,7 @@ namespace Alpha.Tests.Services.Tests
                 );
 
             //Act
-            var result = await _service.UpdateAsync(It.IsAny<int>(), _correctUserModel);
+            var result = await _service.UpdateAsync(It.IsAny<string>(), _correctUserModel);
             _userRepositoryMock.Verify(repository => repository.UpdateAsync(It.IsAny<User>()), Times.Once);
 
             //Asserts
@@ -178,13 +178,13 @@ namespace Alpha.Tests.Services.Tests
         public async Task UpdateAsync_Throw_NotFoundCustomException()
         {
             //Arrange
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
               .ReturnsAsync((User)null);
 
             //Act and Assert
             await Assert.ThrowsAsync<NotFoundCustomException>(async () =>
             {
-                await _service.UpdateAsync(It.IsAny<int>(), _correctUserModel);
+                await _service.UpdateAsync(It.IsAny<string>(), _correctUserModel);
             });
         }
 
@@ -194,7 +194,7 @@ namespace Alpha.Tests.Services.Tests
             //Act and Assert
             await Assert.ThrowsAsync<ValidationException>(async () =>
             {
-                await _service.UpdateAsync(It.IsAny<int>(), _incorrectUserModel);
+                await _service.UpdateAsync(It.IsAny<string>(), _incorrectUserModel);
             });
         }
 
@@ -202,26 +202,26 @@ namespace Alpha.Tests.Services.Tests
         public async Task Delete_Success()
         {
             //Arrange
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(_userEntity);
 
             _userRepositoryMock.Setup(repository => repository.UpdateAsync(It.IsAny<User>()));
 
             //Act
-            await _service.GetByIdAsync(It.IsAny<int>());
+            await _service.GetByIdAsync(It.IsAny<string>());
         }
 
         [Fact]
         public async Task Delete_Throw_NotFoundCustomException_Entity_Null()
         {
             //Arrange          
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync((User)null);
 
             //Act and Assert
             await Assert.ThrowsAsync<NotFoundCustomException>(async () =>
             {
-                await _service.DeleteAsync(It.IsAny<int>());
+                await _service.DeleteAsync(It.IsAny<string>());
             });
         }
 
@@ -231,13 +231,13 @@ namespace Alpha.Tests.Services.Tests
             //Arrange
             _userEntity.State = false;
 
-            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
+            _userRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<string>()))
                 .ReturnsAsync(_userEntity);
 
             //Act and Assert
             await Assert.ThrowsAsync<NotFoundCustomException>(async () =>
             {
-                await _service.DeleteAsync(It.IsAny<int>());
+                await _service.DeleteAsync(It.IsAny<string>());
             });
         }
     }

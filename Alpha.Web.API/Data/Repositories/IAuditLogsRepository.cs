@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public interface IAuditLogsRepository : IGenericReadOnlyRepository<AuditLog>
+    public interface IAuditLogsRepository : IGenericReadOnlyRepository<int, AuditLog>
     {
         Task<IEnumerable<AuditLog>> GetByCriteriaAsync(string action, DateTime endDate, DateTime startDate,
             string tableName, int tableId);

@@ -1,9 +1,10 @@
 ﻿using Alpha.Web.API.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Web.API.Data
 {
-    public class AlphaDbContext : DbContext
+    public class AlphaDbContext : IdentityDbContext<User>
     {
         public AlphaDbContext(DbContextOptions<AlphaDbContext> options) : base(options)
         {

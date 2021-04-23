@@ -20,7 +20,7 @@ namespace Alpha.Web.API.Domain.Services
             _userModelValidator = userModelValidator;
         }
 
-        public async Task<UserModel> GetByIdAsync(int userId)
+        public async Task<UserModel> GetByIdAsync(string userId)
         {
             var userEntity = await _usersRepository.GetByIdAsync(userId);
 
@@ -41,7 +41,7 @@ namespace Alpha.Web.API.Domain.Services
             };
         }
 
-        public async Task<int> CreateAsync(UserModel userModel)
+        public async Task<string> CreateAsync(UserModel userModel)
         {
             await _userModelValidator.ValidateAndThrowAsync(userModel);
 
@@ -54,7 +54,7 @@ namespace Alpha.Web.API.Domain.Services
             return userEntity.Id;
         }
 
-        public async Task<int> UpdateAsync(int userId, UserModel userModel)
+        public async Task<string> UpdateAsync(string userId, UserModel userModel)
         {
             await _userModelValidator.ValidateAndThrowAsync(userModel);
 
@@ -69,7 +69,7 @@ namespace Alpha.Web.API.Domain.Services
             return userEntity.Id;
         }
 
-        public async Task DeleteAsync(int userId)
+        public async Task DeleteAsync(string userId)
         {
             var userEntity = await _usersRepository.GetByIdAsync(userId);
 

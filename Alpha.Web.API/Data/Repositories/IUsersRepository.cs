@@ -2,7 +2,7 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public interface IUsersRepository : IGenericRepository<User>
+    public interface IUsersRepository : IGenericRepository<string, User>
     {
     }
 }

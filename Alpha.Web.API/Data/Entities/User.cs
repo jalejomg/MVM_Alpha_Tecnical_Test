@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alpha.Web.API.Data.Entities
 {
-    public class User : IEntity
+    public class User : IdentityUser, IEntity<string>
     {
-        public int Id { get; set; }
-
         [MaxLength(50)]
         [Required]
         public string Name { get; set; }
@@ -16,9 +15,9 @@ namespace Alpha.Web.API.Data.Entities
         [Required]
         public string LastName { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(20)]
         [Required]
-        public string Email { get; set; }
+        public string Role { get; set; }
 
         [Required]
         public bool State { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class AuditLogsRepository : GenericReadOnlyRepository<AuditLog>, IAuditLogsRepository
+    public class AuditLogsRepository : GenericReadOnlyRepository<int, AuditLog>, IAuditLogsRepository
     {
         private readonly AlphaDbContext _context;
 

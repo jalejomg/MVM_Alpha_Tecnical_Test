@@ -2,7 +2,7 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class MessagesRepository : GenericRepository<Message>, IMessagesRepository
+    public class MessagesRepository : GenericRepository<int, Message>, IMessagesRepository
     {
         public MessagesRepository(AlphaDbContext context) : base(context)
         {
@@ -10,3 +10,4 @@ namespace Alpha.Web.API.Data.Repositories
         }
     }
 }
+

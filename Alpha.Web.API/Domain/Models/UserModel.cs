@@ -7,11 +7,12 @@ namespace Alpha.Web.API.Domain.Models
 {
     public class UserModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Status { get; set; }
+        public string Role { get; set; }
+        public string State { get; set; }
 
         public static UserModel MakeOne(User userEntity)
         {
@@ -21,7 +22,8 @@ namespace Alpha.Web.API.Domain.Models
                 Name = userEntity.Name,
                 LastName = userEntity.LastName,
                 Email = userEntity.Email,
-                Status = userEntity.State ? EntityStatus.Persistent : EntityStatus.Deleted
+                Role = userEntity.Role,
+                State = userEntity.State ? EntityStatus.Persistent : EntityStatus.Deleted
             };
         }
 
@@ -37,7 +39,8 @@ namespace Alpha.Web.API.Domain.Models
                 Id = userModel.Id,
                 Name = userModel.Name,
                 LastName = userModel.LastName,
-                Email = userModel.Email
+                Email = userModel.Email,
+                Role = userModel.Role
             };
         }
     }

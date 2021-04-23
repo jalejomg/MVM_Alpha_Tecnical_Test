@@ -2,7 +2,7 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class UsersRepository : GenericRepository<User>, IUsersRepository
+    public class UsersRepository : GenericRepository<string, User>, IUsersRepository
     {
         public UsersRepository(AlphaDbContext context) : base(context)
         {

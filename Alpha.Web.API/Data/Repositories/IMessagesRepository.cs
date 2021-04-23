@@ -2,7 +2,7 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public interface IMessagesRepository : IGenericRepository<Message>
+    public interface IMessagesRepository : IGenericRepository<int, Message>
     {
     }
 }

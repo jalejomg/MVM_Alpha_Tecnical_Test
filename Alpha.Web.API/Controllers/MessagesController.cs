@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase
     {

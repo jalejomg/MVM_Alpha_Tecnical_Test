@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Alpha.Web.API.Data.Entities
 {
-    public class AuditLog : IEntity
+    public class AuditLog : IEntity<int>
     {
         public int Id { get; set; }
 

@@ -1,8 +1,6 @@
-using Alpha.Web.API.Data;
 using Alpha.Web.API.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,10 +22,9 @@ namespace Alpha.Web.API
         {
 
             services.AddControllers();
-            services.AddDbContext<AlphaDbContext>(config =>
-                config.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-            );
-            DependenciesInjector.RegisterDependencies(services);
+
+            DependenciesInjector.RegisterDependencies(services, Configuration);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Alpha.Web.API", Version = "v1" });
@@ -47,6 +44,8 @@ namespace Alpha.Web.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

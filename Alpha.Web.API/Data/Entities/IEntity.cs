@@ -1,7 +1,7 @@
 ﻿namespace Alpha.Web.API.Data.Entities
 {
-    public interface IEntity
+    public interface IEntity<Type>
     {
-        int Id { get; set; }
+        Type Id { get; set; }
     }
 }

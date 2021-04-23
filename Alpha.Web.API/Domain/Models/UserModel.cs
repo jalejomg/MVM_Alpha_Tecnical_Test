@@ -37,7 +37,7 @@ namespace Alpha.Web.API.Domain.Models
                 Id = userModel.Id,
                 Name = userModel.Name,
                 LastName = userModel.LastName,
-                Email = userModel.LastName
+                Email = userModel.Email
             };
         }
     }

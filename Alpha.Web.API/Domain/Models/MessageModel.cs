@@ -10,7 +10,8 @@ namespace Alpha.Web.API.Domain.Models
         public int Id { get; set; }
         public string PublicId { get; set; }
         public string Body { get; set; }
-        public short Type { get; set; }
+        public string Type { get; set; }
+        public short TypeCode { get; set; }
         public string DeliveryStatus { get; set; }
         public User Addressee { get; set; }
         public User Sender { get; set; }
@@ -20,7 +21,7 @@ namespace Alpha.Web.API.Domain.Models
             return new MessageModel
             {
                 Id = messageEntity.Id,
-                PublicId = messageEntity.Type == MessageTypes.ExternalMessage ?
+                PublicId = messageEntity.Type == MessageTypes.ExternalMessageCode ?
                     $"{MessagePrefixes.ExternalMessage}{messageEntity.Id}"
                     : $"{MessagePrefixes.InternalMessage}{messageEntity.Id}",
                 Body = messageEntity.Body,
@@ -28,6 +29,10 @@ namespace Alpha.Web.API.Domain.Models
                     DeliveryStates.Delivered
                     : DeliveryStates.Pending,
                 Addressee = messageEntity.Addressee,
+                Type = messageEntity.Type == MessageTypes.InternalMessageCode ?
+                    MessageTypes.InternalMessage
+                    : MessageTypes.ExternalMessage,
+                TypeCode = messageEntity.Type,
                 Sender = messageEntity.Sender
             };
         }
@@ -43,7 +48,9 @@ namespace Alpha.Web.API.Domain.Models
             {
                 Id = userModel.Id,
                 Body = userModel.Body,
-                Type = userModel.Type
+                Type = userModel.Type == MessageTypes.ExternalMessage ?
+                    MessageTypes.ExternalMessageCode
+                    : MessageTypes.InternalMessageCode
             };
         }
     }

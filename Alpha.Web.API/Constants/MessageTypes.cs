@@ -2,7 +2,9 @@
 {
     public class MessageTypes
     {
-        public const int InternalMessage = 0;
-        public const int ExternalMessage = 1;
+        public const string InternalMessage = "Internal message";
+        public const string ExternalMessage = "External message";
+        public const short InternalMessageCode = 0;
+        public const short ExternalMessageCode = 1;
     }
 }

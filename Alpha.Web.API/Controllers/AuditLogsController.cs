@@ -17,10 +17,10 @@ namespace Alpha.Web.API.Controllers
 
         [HttpGet]
         [Route("api/auditLogs")]
-        public async Task<IActionResult> GetAuditLogsByCriteria(string action, DateTime endDate,
-            DateTime startDate, string tableName, int tableId)
+        public async Task<IActionResult> GetAuditLogsByCriteria(DateTime? endDate,
+            DateTime? startDate, int? tableId, string tableName = "Messages", string action = "")
         {
-            return Ok(await _auditLogService.GetByCriteriaAsync(action, endDate, startDate, tableName, tableId));
+            return Ok(await _auditLogService.GetByCriteriaAsync(action, endDate, startDate, tableId, tableName));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Alpha.Web.API.Data.Entities;
+using Alpha.Web.API.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
@@ -15,5 +16,8 @@ namespace Alpha.Web.API.Security.Helpers
         Task AddUserToRoleAsync(User user, string roleName);
 
         Task<bool> IsUserInRoleAsync(User user, string roleName);
+        Task<SignInResult> LoginAsync(LoginModel model);
+        Task LogoutAsync();
+
     }
 }

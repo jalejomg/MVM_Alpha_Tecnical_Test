@@ -1,5 +1,6 @@
 ﻿using Alpha.Web.API.Data;
 using Alpha.Web.API.Data.Entities;
+using Alpha.Web.API.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -11,12 +12,19 @@ namespace Alpha.Web.API.Security.Helpers
         private readonly AlphaDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public UserHelper(AlphaDbContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+
+        public UserHelper(
+            AlphaDbContext context,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<User> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
@@ -50,6 +58,16 @@ namespace Alpha.Web.API.Security.Helpers
         public async Task<bool> IsUserInRoleAsync(User user, string roleName)
         {
             return await _userManager.IsInRoleAsync(user, roleName);
+        }
+
+        public async Task<SignInResult> LoginAsync(LoginModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 

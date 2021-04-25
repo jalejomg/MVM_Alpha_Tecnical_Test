@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Alpha.Web.API.Domain.Services
 {
+    /// <summary>
+    /// This class injects all dependencies needed to the app run, so that the StartUp class will keep clean
+    /// </summary>
     public static class DependenciesInjector
     {
         public static IServiceCollection RegisterDependencies(this IServiceCollection _services, IConfiguration configuration)
@@ -22,9 +25,10 @@ namespace Alpha.Web.API.Domain.Services
             );
 
             //Sevices injection
-            _services.AddScoped<IUsersService, UsersService>();
+            _services.AddScoped<IAspNetUsersService, AspNetUsersService>();
             _services.AddScoped<IMessagesService, MessagesService>();
             _services.AddScoped<IAuditLogsService, AuditLogsService>();
+            _services.AddScoped<IAccountService, AccountService>();
 
             //Repositories injection
             _services.AddScoped<IUsersRepository, UsersRepository>();
@@ -36,7 +40,7 @@ namespace Alpha.Web.API.Domain.Services
             _services.AddScoped<IValidator<MessageModel>, MessageModelValidator>();
 
             //Add IdentityMagager
-            _services.AddIdentity<User, IdentityRole>(config =>
+            _services.AddIdentity<AspNetUser, AspNetRole>(config =>
             {
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequireDigit = false;
@@ -45,9 +49,6 @@ namespace Alpha.Web.API.Domain.Services
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<AlphaDbContext>();
-
-            //Inject helpers
-            _services.AddScoped<IUserHelper, UserHelper>();
 
             return _services;
         }

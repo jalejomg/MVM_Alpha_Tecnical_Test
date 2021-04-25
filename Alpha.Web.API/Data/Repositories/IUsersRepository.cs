@@ -2,7 +2,10 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public interface IUsersRepository : IGenericRepository<string, User>
+    /// <summary>
+    /// This class declare methods to transact data from Users table
+    /// </summary>
+    public interface IUsersRepository : IGenericRepository<string, AspNetUser>
     {
     }
 }

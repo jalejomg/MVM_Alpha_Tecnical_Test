@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Alpha.Web.API.Data
 {
-    public class AlphaDbContext : IdentityDbContext<User>
+    public class AlphaDbContext : IdentityDbContext<AspNetUser>
     {
         public AlphaDbContext(DbContextOptions<AlphaDbContext> options) : base(options)
         {
 
         }
-        public DbSet<User> Users { get; set; }
+
         public DbSet<Message> Messages { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
 
@@ -18,7 +18,11 @@ namespace Alpha.Web.API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<AspNetUser>()
+                .HasIndex(user => user.Id)
+                .IsUnique();
+
+            modelBuilder.Entity<AspNetRole>()
                 .HasIndex(user => user.Id)
                 .IsUnique();
 

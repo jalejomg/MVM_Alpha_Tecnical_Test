@@ -3,6 +3,9 @@ using System.Net;
 
 namespace Alpha.Web.API.CustomExceptions
 {
+    /// <summary>
+    /// This class is a father of anothers custom exeptions implementations
+    /// </summary>
     public class BaseCustomException : Exception
     {
         public BaseCustomException(string message, string description, HttpStatusCode code) : base(message)

@@ -6,22 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Controllers
-{    
+{
+    /// <summary>
+    /// This class contain all APIs endpoints about Users 
+    /// </summary>
     [ApiController]
     public class UsersController : ControllerBase
     {
-        public IUsersService _userService;
+        public IAspNetUsersService _aspNetUsersService;
 
-        public UsersController(IUsersService userService)
+        public UsersController(IAspNetUsersService aspNetUsersService)
         {
-            _userService = userService;
+            _aspNetUsersService = aspNetUsersService;
         }
 
         [HttpGet]
         [Route("api/users/")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _userService.ListAsync());
+            return Ok(await _aspNetUsersService.ListAsync());
         }
 
         [HttpGet]
@@ -30,7 +33,7 @@ namespace Alpha.Web.API.Controllers
         {
             try
             {
-                return Ok(await _userService.GetByIdAsync(userId));
+                return Ok(await _aspNetUsersService.GetByIdAsync(userId));
             }
             catch (NotFoundCustomException exception)
             {
@@ -40,11 +43,11 @@ namespace Alpha.Web.API.Controllers
 
         [HttpPost]
         [Route("api/users/")]
-        public async Task<IActionResult> Create(UserModel user)
+        public async Task<IActionResult> Add(string password, UserModel user)
         {
             try
             {
-                return Ok(await _userService.CreateAsync(user));
+                return Ok(await _aspNetUsersService.AddAsync(user, password));
             }
             catch (ValidationException exception)
             {
@@ -58,7 +61,7 @@ namespace Alpha.Web.API.Controllers
         {
             try
             {
-                return Ok(await _userService.UpdateAsync(userId, user));
+                return Ok(await _aspNetUsersService.UpdateAsync(userId, user));
             }
             catch (ValidationException exception)
             {
@@ -72,7 +75,7 @@ namespace Alpha.Web.API.Controllers
         {
             try
             {
-                await _userService.DeleteAsync(userId);
+                await _aspNetUsersService.DeleteAsync(userId);
                 return Ok();
             }
             catch (NotFoundCustomException exception)

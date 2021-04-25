@@ -2,7 +2,10 @@
 
 namespace Alpha.Web.API.Data.Repositories
 {
-    public class UsersRepository : GenericRepository<string, User>, IUsersRepository
+    /// <summary>
+    /// This class implement logic to transact data from Users table
+    /// </summary>
+    public class UsersRepository : GenericRepository<string, AspNetUser>, IUsersRepository
     {
         public UsersRepository(AlphaDbContext context) : base(context)
         {

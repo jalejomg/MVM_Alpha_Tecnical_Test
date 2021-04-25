@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alpha.Web.API.Data.Entities
 {
-    public class User : IdentityUser, IEntity<string>
+    public class AspNetUser : IdentityUser, IEntity<string>
     {
         [MaxLength(50)]
         [Required]

@@ -15,10 +15,10 @@ namespace Alpha.Web.API.Data.Entities
         public short DeliveryStatus { get; set; }
 
         [ForeignKey("AddresseeId")]
-        public User Addressee { get; set; }
+        public AspNetUser Addressee { get; set; }
 
         [ForeignKey("SenderId")]
-        public User Sender { get; set; }
+        public AspNetUser Sender { get; set; }
 
         [Required]
         public bool State { get; set; }

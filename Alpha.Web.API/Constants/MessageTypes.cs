@@ -1,5 +1,8 @@
 ﻿namespace Alpha.Web.API.Constants
 {
+    /// <summary>
+    /// This class contains constant values that represent the two kind of messages that app allows
+    /// </summary>
     public class MessageTypes
     {
         public const string InternalMessage = "Internal message";

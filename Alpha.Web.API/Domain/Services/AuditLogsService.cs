@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Domain.Services
 {
+    /// <summary>
+    /// This class contains core logic actions about audit logs domain
+    /// </summary>
     public class AuditLogsService : IAuditLogsService
     {
         private readonly IAuditLogsRepository _auditLogRepository;

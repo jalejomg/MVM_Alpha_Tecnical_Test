@@ -2,6 +2,9 @@
 
 namespace Alpha.Web.API.CustomExceptions
 {
+    /// <summary>
+    /// This class implements a custom NotFound exception
+    /// </summary>
     public class NotFoundCustomException : BaseCustomException
     {
         public NotFoundCustomException(string message) : base(message, string.Empty, HttpStatusCode.NotFound)

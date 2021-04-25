@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Data.Repositories
 {
+    /// <summary>
+    /// This class implement logic to transact data from AuditLogs table
+    /// </summary>
     public class AuditLogsRepository : GenericReadOnlyRepository<int, AuditLog>, IAuditLogsRepository
     {
         private readonly AlphaDbContext _context;

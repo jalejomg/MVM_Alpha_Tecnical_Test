@@ -13,8 +13,8 @@ namespace Alpha.Web.API.Domain.Models
         public string Type { get; set; }
         public short TypeCode { get; set; }
         public string DeliveryStatus { get; set; }
-        public User Addressee { get; set; }
-        public User Sender { get; set; }
+        public AspNetUser Addressee { get; set; }
+        public AspNetUser Sender { get; set; }
 
         public static MessageModel MakeOne(Message messageEntity)
         {

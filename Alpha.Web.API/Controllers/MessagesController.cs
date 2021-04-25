@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Controllers
 {
+    /// <summary>
+    /// This class contain all APIs endpoints about Messages 
+    /// </summary>
     [ApiController]
     public class MessagesController : ControllerBase
     {

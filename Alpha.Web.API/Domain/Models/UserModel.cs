@@ -14,7 +14,7 @@ namespace Alpha.Web.API.Domain.Models
         public string Role { get; set; }
         public string State { get; set; }
 
-        public static UserModel MakeOne(User userEntity)
+        public static UserModel MakeOne(AspNetUser userEntity)
         {
             return new UserModel
             {
@@ -23,18 +23,18 @@ namespace Alpha.Web.API.Domain.Models
                 LastName = userEntity.LastName,
                 Email = userEntity.Email,
                 Role = userEntity.Role,
-                State = userEntity.State ? EntityStatus.Persistent : EntityStatus.Deleted
+                State = userEntity.State ? EntityStatus.Exists : EntityStatus.Deleted
             };
         }
 
-        public static IEnumerable<UserModel> MakeMany(IEnumerable<User> userEntities)
+        public static IEnumerable<UserModel> MakeMany(IEnumerable<AspNetUser> userEntities)
         {
             return userEntities.Select(userEntity => MakeOne(userEntity));
         }
 
-        public static User FillUp(UserModel userModel)
+        public static AspNetUser FillUp(UserModel userModel)
         {
-            return new User
+            return new AspNetUser
             {
                 Id = userModel.Id,
                 Name = userModel.Name,

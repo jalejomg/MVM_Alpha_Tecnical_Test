@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Alpha.Web.API.Domain.Services
 {
+    /// <summary>
+    /// This class contains core logic actions about Messaging domain
+    /// </summary>
     public class MessagesService : IMessagesService
     {
         private IMessagesRepository _messagesRepository;
@@ -48,7 +51,7 @@ namespace Alpha.Web.API.Domain.Services
 
             var messageEntity = MessageModel.FillUp(messageModel);
 
-            messageEntity.State = true;
+            messageEntity.State = EntityStatus.ExistsValue;
 
             await _messagesRepository.CreateAsync(messageEntity);
 
@@ -77,7 +80,7 @@ namespace Alpha.Web.API.Domain.Services
             if (messageEntity == null) throw new NotFoundCustomException("Message was not found");
             if (!messageEntity.State) throw new NotFoundCustomException("Message was not found");
 
-            messageEntity.State = false;
+            messageEntity.State = EntityStatus.DeletedValue;
 
             await _messagesRepository.UpdateAsync(messageEntity);
         }

@@ -5,6 +5,9 @@ using Xunit;
 
 namespace Alpha.Tests.ModelValidators.Tests
 {
+    /// <summary>
+    /// This class contain all unit tests about MessageModelValidator class 
+    /// </summary>
     public class MessageModelValidatorTests
     {
         MessageModelValidator _validator;

@@ -6,6 +6,9 @@ using Xunit;
 
 namespace Alpha.Tests.ModelValidators.Tests
 {
+    /// <summary>
+    /// This class contain all unit tests about UserModelValidator class
+    /// </summary>
     public class UserModelValidatorTests
     {
         UserModelValidator _validator;

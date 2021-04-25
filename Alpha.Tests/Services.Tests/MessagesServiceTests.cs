@@ -14,6 +14,9 @@ using Xunit;
 
 namespace Alpha.Tests.Services.Tests
 {
+    /// <summary>
+    /// This class contain all unit tests about MessageService class 
+    /// </summary>
     public class MessagesServiceTests
     {
         private Message _messageEntity;
@@ -30,7 +33,7 @@ namespace Alpha.Tests.Services.Tests
                 Body = "message body",
                 Type = MessageTypes.ExternalMessageCode,
                 DeliveryStatus = DeliveryStates.DeliveredCode,
-                State = true
+                State = EntityStatus.ExistsValue
             };
 
             _correctMessageModel = new MessageModel
@@ -85,7 +88,7 @@ namespace Alpha.Tests.Services.Tests
         public async Task GetById_Throw_NotFoundCustomException_Entity_State_False()
         {
             //Arrange
-            _messageEntity.State = false;
+            _messageEntity.State = EntityStatus.DeletedValue;
 
             _messageRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
                 .ReturnsAsync(_messageEntity);
@@ -232,7 +235,7 @@ namespace Alpha.Tests.Services.Tests
         public async Task Delete_Throw_NotFoundCustomException_Entity_State_False()
         {
             //Arrange
-            _messageEntity.State = false;
+            _messageEntity.State = EntityStatus.DeletedValue;
 
             _messageRepositoryMock.Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
                 .ReturnsAsync(_messageEntity);

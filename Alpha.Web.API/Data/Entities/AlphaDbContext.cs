@@ -22,9 +22,9 @@ namespace Alpha.Web.API.Data
                 .HasIndex(user => user.Id)
                 .IsUnique();
 
-            //modelBuilder.Entity<AspNetRole>()
-            //    .HasIndex(user => user.Id)
-            //    .IsUnique();
+            modelBuilder.Entity<AspNetRole>()
+                .HasIndex(user => user.Id)
+                .IsUnique();
 
             modelBuilder.Entity<Message>()
                 .HasIndex(message => message.Id)

@@ -21,7 +21,7 @@ namespace Alpha.Web.API.Security.Helpers
 
         public async Task<SignInResult> LoginAsync(LoginModel model)
         {
-            return await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+            return await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
         }
 
         public async Task LogoutAsync()

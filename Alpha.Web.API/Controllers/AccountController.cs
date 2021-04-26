@@ -39,6 +39,7 @@ namespace Alpha.Web.API.Controllers
             var result = await _accountService.LoginAsync(model);
             if (result.Succeeded)
             {
+                model.Password = null;
                 return Ok(model);
             }
 
@@ -57,7 +58,7 @@ namespace Alpha.Web.API.Controllers
         [Route("api/account/CreateToken")]
         public async Task<IActionResult> CreateToken([FromBody] LoginModel model)
         {
-            var user = await _userService.GetByIdAsync(model.Username);
+            var user = await _userService.GetByIdAsync(model.Email);
 
             if (user != null)
             {

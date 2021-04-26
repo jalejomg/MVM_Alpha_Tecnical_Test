@@ -5,8 +5,8 @@ namespace Alpha.Web.API.Domain.Models
     public class LoginModel
     {
         [Required]
-        [EmailAddress]
-        public string Username { get; set; }
+        //[EmailAddress]
+        public string Email { get; set; }
 
         [Required]
         [MinLength(6)]

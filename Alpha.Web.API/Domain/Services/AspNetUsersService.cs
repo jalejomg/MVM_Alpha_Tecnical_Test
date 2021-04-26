@@ -5,6 +5,7 @@ using Alpha.Web.API.Data.Repositories;
 using Alpha.Web.API.Domain.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,12 +17,12 @@ namespace Alpha.Web.API.Domain.Services
         /// <summary>
         /// This class contain the core of acctions about user domain.
         /// </summary>
-        private IUsersRepository _usersRepository;
+        private IAspNetUsersRepository _usersRepository;
         public IValidator<UserModel> _userModelValidator;
         private readonly UserManager<AspNetUser> _userManager;
         private readonly RoleManager<AspNetRole> _roleManager;
         public AspNetUsersService(
-            IUsersRepository usersRepository,
+            IAspNetUsersRepository usersRepository,
             IValidator<UserModel> userModelValidator,
             UserManager<AspNetUser> userManager,
             RoleManager<AspNetRole> roleManager)
@@ -58,6 +59,8 @@ namespace Alpha.Web.API.Domain.Services
             _userModelValidator.ValidateAndThrow(userModel);
 
             var userEntity = UserModel.FillUp(userModel);
+
+            userEntity.Id = new Guid();
 
             return await _userManager.CreateAsync(userEntity, password);
         }

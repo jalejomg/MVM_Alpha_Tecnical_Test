@@ -24,7 +24,7 @@ namespace Alpha.Tests.Services.Tests
         private UserModel _correctUserModel;
         private UserModel _incorrectUserModel;
         private readonly AspNetUsersService _service;
-        private Mock<IUsersRepository> _userRepositoryMock;
+        private Mock<IAspNetUsersRepository> _userRepositoryMock;
         private UserModelValidator _userModelValidator;
         private static Mock<IUserStore<AspNetUser>> _userStoreMock;
         private static Mock<IRoleStore<AspNetRole>> _roleStoreMock;
@@ -57,7 +57,7 @@ namespace Alpha.Tests.Services.Tests
                 null, null, null, null);
 
             _incorrectUserModel = new UserModel();
-            _userRepositoryMock = new Mock<IUsersRepository>();
+            _userRepositoryMock = new Mock<IAspNetUsersRepository>();
             _userModelValidator = new UserModelValidator();
             _service = new AspNetUsersService(
                 _userRepositoryMock.Object,

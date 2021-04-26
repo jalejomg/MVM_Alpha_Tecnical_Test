@@ -32,7 +32,7 @@ namespace Alpha.Web.API.Domain.Services
             _services.AddScoped<IAccountService, AccountService>();
 
             //Repositories injection
-            _services.AddScoped<IUsersRepository, UsersRepository>();
+            _services.AddScoped<IAspNetUsersRepository, AspNetUsersRepository>();
             _services.AddScoped<IMessagesRepository, MessagesRepository>();
             _services.AddScoped<IAuditLogsRepository, AuditLogsRepository>();
 

@@ -36,8 +36,6 @@ namespace Alpha.Web.API.Security.Helpers
             var userEntity = UserModel.FillUp(userModel);
 
             return await _signInManager.CheckPasswordSignInAsync(userEntity, password, false);
-
         }
     }
-
 }

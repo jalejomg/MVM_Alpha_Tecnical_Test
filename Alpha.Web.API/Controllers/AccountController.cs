@@ -36,7 +36,7 @@ namespace Alpha.Web.API.Controllers
         [Route("api/account/login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _accountService.LoginAsync(model);
+            var result = await _accountService.LoginAsync(model);
             if (result.Succeeded)
             {
                 return Ok(model);

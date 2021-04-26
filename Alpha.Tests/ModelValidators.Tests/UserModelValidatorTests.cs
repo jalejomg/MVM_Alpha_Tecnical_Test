@@ -23,7 +23,6 @@ namespace Alpha.Tests.ModelValidators.Tests
         {
             //Arrange
             _model.Name = "Name";
-            _model.LastName = "LastName";
             _model.Email = "email@alpha.co";
 
             //Act
@@ -40,7 +39,6 @@ namespace Alpha.Tests.ModelValidators.Tests
         {
             //Arrange
             _model.Name = "";
-            _model.LastName = "LastName";
             _model.Email = "email@alpha.co";
 
             //Act
@@ -57,41 +55,6 @@ namespace Alpha.Tests.ModelValidators.Tests
         {
             //Arrange
             _model.Name = UtilRandomGenerator.GenerateString(51);
-            _model.LastName = "LastName";
-            _model.Email = "email@alpha.co";
-
-            //Act
-            var result = _validator.Validate(_model);
-
-            //Asserts
-            Assert.NotNull(result);
-            Assert.False(result.IsValid);
-            Assert.True(result.Errors.Count == 1);
-        }
-
-        [Fact]
-        public void Validation_Fail_LastName_Empty()
-        {
-            //Arrange
-            _model.Name = "Name";
-            _model.LastName = "";
-            _model.Email = "email@alpha.co";
-
-            //Act
-            var result = _validator.Validate(_model);
-
-            //Asserts
-            Assert.NotNull(result);
-            Assert.False(result.IsValid);
-            Assert.True(result.Errors.Count == 1);
-        }
-
-        [Fact]
-        public void Validation_Fail_LastName_More_Than_50_Characters()
-        {
-            //Arrange
-            _model.Name = "Name";
-            _model.LastName = UtilRandomGenerator.GenerateString(51);
             _model.Email = "email@alpha.co";
 
             //Act
@@ -108,7 +71,6 @@ namespace Alpha.Tests.ModelValidators.Tests
         {
             //Arrange
             _model.Name = "Name";
-            _model.LastName = "LastName";
             _model.Email = "";
 
             //Act
@@ -125,7 +87,6 @@ namespace Alpha.Tests.ModelValidators.Tests
         {
             //Arrange
             _model.Name = "Name";
-            _model.LastName = "LastName";
             _model.Email = UtilRandomGenerator.GenerateString(101);
 
             //Act

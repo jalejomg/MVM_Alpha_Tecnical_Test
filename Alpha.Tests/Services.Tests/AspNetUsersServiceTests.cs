@@ -35,8 +35,7 @@ namespace Alpha.Tests.Services.Tests
             _userEntity = new AspNetUser
             {
                 Id = "lsnfoisadfa",
-                Name = "Alpha",
-                LastName = "Communications",
+                UserName = "Alpha",
                 Email = "alpha.communications@alpha.co",
                 State = EntityStatus.ExistsValue
             };
@@ -45,7 +44,6 @@ namespace Alpha.Tests.Services.Tests
             {
                 Id = "lsnfoisadfa",
                 Name = "Alpha",
-                LastName = "Communications",
                 Email = "alpha.communications@alpha.co"
             };
             _userStoreMock = new Mock<IUserStore<AspNetUser>>();
@@ -81,8 +79,7 @@ namespace Alpha.Tests.Services.Tests
             //Asserts
             Assert.NotNull(result);
             Assert.Equal(_userEntity.Id, result.Id);
-            Assert.Equal(_userEntity.Name, result.Name);
-            Assert.Equal(_userEntity.LastName, result.LastName);
+            Assert.Equal(_userEntity.UserName, result.Name);
             Assert.Equal(_userEntity.Email, result.Email);
         }
 
@@ -132,8 +129,7 @@ namespace Alpha.Tests.Services.Tests
             //Asserts
             Assert.NotNull(result);
             Assert.True(usersList[0].Id == result.Data.ElementAt(0).Id);
-            Assert.True(usersList[0].Name == result.Data.ElementAt(0).Name);
-            Assert.True(usersList[0].LastName == result.Data.ElementAt(0).LastName);
+            Assert.True(usersList[0].UserName == result.Data.ElementAt(0).Name);
             Assert.True(usersList[0].Email == result.Data.ElementAt(0).Email);
         }
 
@@ -182,8 +178,7 @@ namespace Alpha.Tests.Services.Tests
 
             //Asserts
             Assert.Equal(_userEntity.Id, updatedUserEntity.Id);
-            Assert.Equal(_userEntity.Name, updatedUserEntity.Name);
-            Assert.Equal(_userEntity.LastName, updatedUserEntity.LastName);
+            Assert.Equal(_userEntity.UserName, updatedUserEntity.UserName);
             Assert.Equal(_userEntity.Email, updatedUserEntity.Email);
         }
 

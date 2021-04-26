@@ -9,9 +9,7 @@ namespace Alpha.Web.API.Domain.Models
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string LastName { get; set; }
         public string Email { get; set; }
-        public string Role { get; set; }
         public string State { get; set; }
 
         public static UserModel MakeOne(AspNetUser userEntity)
@@ -19,10 +17,8 @@ namespace Alpha.Web.API.Domain.Models
             return new UserModel
             {
                 Id = userEntity.Id,
-                Name = userEntity.Name,
-                LastName = userEntity.LastName,
+                Name = userEntity.UserName,
                 Email = userEntity.Email,
-                Role = userEntity.Role,
                 State = userEntity.State ? EntityStatus.Exists : EntityStatus.Deleted
             };
         }
@@ -37,10 +33,8 @@ namespace Alpha.Web.API.Domain.Models
             return new AspNetUser
             {
                 Id = userModel.Id,
-                Name = userModel.Name,
-                LastName = userModel.LastName,
-                Email = userModel.Email,
-                Role = userModel.Role
+                UserName = userModel.Name,
+                Email = userModel.Email
             };
         }
     }

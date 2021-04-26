@@ -1,9 +1,6 @@
-﻿using Alpha.Web.API.CustomExceptions;
-using Alpha.Web.API.Domain.Models;
+﻿using Alpha.Web.API.Domain.Models;
 using Alpha.Web.API.Domain.Services;
 using Alpha.Web.API.Security.Helpers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;

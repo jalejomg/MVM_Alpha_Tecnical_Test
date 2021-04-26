@@ -1,4 +1,5 @@
-﻿using Alpha.Web.API.Constants;
+﻿using Alpha.Tests.Util;
+using Alpha.Web.API.Constants;
 using Alpha.Web.API.CustomExceptions;
 using Alpha.Web.API.Data.Entities;
 using Alpha.Web.API.Data.Repositories;
@@ -36,9 +37,17 @@ namespace Alpha.Web.API.Domain.Services
         public async Task<UserModel> GetByIdAsync(string userId)
         {
             var userEntity = await _usersRepository.GetByIdAsync(userId);
-
             if (userEntity == null) throw new NotFoundCustomException("User was not found");
             if (!userEntity.State) throw new NotFoundCustomException("User was not found");
+
+            return UserModel.MakeOne(userEntity);
+        }
+
+        public async Task<UserModel> GetByEmail(string email)
+        {
+            var userEntity = await _userManager.FindByEmailAsync(email);
+
+            if (userEntity == null) throw new NotFoundCustomException("User was not found");
 
             return UserModel.MakeOne(userEntity);
         }
@@ -60,7 +69,7 @@ namespace Alpha.Web.API.Domain.Services
 
             var userEntity = UserModel.FillUp(userModel);
 
-            userEntity.Id = new Guid();
+            userEntity.Id = UtilRandomGenerator.GenerateString(10); ;
 
             return await _userManager.CreateAsync(userEntity, password);
         }

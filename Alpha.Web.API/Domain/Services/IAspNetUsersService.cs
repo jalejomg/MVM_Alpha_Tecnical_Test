@@ -8,6 +8,7 @@ namespace Alpha.Web.API.Domain.Services
     public interface IAspNetUsersService
     {
         Task<UserModel> GetByIdAsync(string userId);
+        Task<UserModel> GetByEmail(string email);
         Task<ResponseModel<IEnumerable<UserModel>>> ListAsync();
         Task<IdentityResult> AddAsync(UserModel user, string password);
         Task<string> UpdateAsync(string userId, UserModel userModel);

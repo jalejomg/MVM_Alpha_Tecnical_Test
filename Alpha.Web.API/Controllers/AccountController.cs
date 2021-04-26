@@ -55,7 +55,7 @@ namespace Alpha.Web.API.Controllers
         [Route("api/account/CreateToken")]
         public async Task<IActionResult> CreateToken([FromBody] LoginModel model)
         {
-            var user = await _userService.GetByIdAsync(model.Email);
+            var user = await _userService.GetByEmail(model.Email);
 
             if (user != null)
             {

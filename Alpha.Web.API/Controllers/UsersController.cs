@@ -2,8 +2,6 @@
 using Alpha.Web.API.Domain.Models;
 using Alpha.Web.API.Domain.Services;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -22,7 +20,7 @@ namespace Alpha.Web.API.Controllers
             _aspNetUsersService = aspNetUsersService;
         }
 
-       // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
         [Route("api/users/")]
         public async Task<IActionResult> GetAll()

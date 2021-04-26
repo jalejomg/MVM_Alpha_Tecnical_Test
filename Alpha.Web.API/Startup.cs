@@ -47,6 +47,8 @@ namespace Alpha.Web.API
 
             app.UseAuthentication();
 
+            app.UseSwagger();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

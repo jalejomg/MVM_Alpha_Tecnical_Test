@@ -8,5 +8,6 @@ namespace Alpha.Web.API.Security.Helpers
     {
         Task<SignInResult> LoginAsync(LoginModel model);
         Task LogoutAsync();
+        Task<SignInResult> ValidatePasswordAsync(UserModel userModel, string password);
     }
 }

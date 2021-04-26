@@ -5,10 +5,11 @@ using Alpha.Web.API.Domain.Models;
 using Alpha.Web.API.Domain.Models.Validators;
 using Alpha.Web.API.Security.Helpers;
 using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Alpha.Web.API.Domain.Services
 {
@@ -49,6 +50,19 @@ namespace Alpha.Web.API.Domain.Services
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<AlphaDbContext>();
+
+            //Add authentication by jwt
+            _services.AddAuthentication()
+            .AddCookie()
+            .AddJwtBearer(config =>
+            {
+                config.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = configuration["Tokens:Issuer"],
+                    ValidAudience = configuration["Tokens:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"]))
+                };
+            });
 
             return _services;
         }
